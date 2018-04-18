@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>H22F&#39;s Blog</title>
+  
+  <subtitle>种一棵树最好的时间是十年前，其次是现在。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="h22f.com/"/>
+  <updated>2018-04-18T08:28:24.266Z</updated>
+  <id>h22f.com/</id>
+  
+  <author>
+    <name>H22F</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kubernetes ingress-nginx开启 nginx-vts-module</title>
+    <link href="h22f.com/2018/04/18/kubernetes-ingress-nginx%E5%BC%80%E5%90%AF-nginx-vts-module/"/>
+    <id>h22f.com/2018/04/18/kubernetes-ingress-nginx开启-nginx-vts-module/</id>
+    <published>2018-04-18T07:46:42.000Z</published>
+    <updated>2018-04-18T08:28:24.266Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;ingress-nginx 默认开启了nginx_status.&lt;br&gt;通过 &lt;a href=&quot;http://node_ip:18080/nginx_status&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="kubernetes" scheme="h22f.com/categories/kubernetes/"/>
+    
+    
+      <category term="kubernetes" scheme="h22f.com/tags/kubernetes/"/>
+    
+      <category term="k8s" scheme="h22f.com/tags/k8s/"/>
+    
+      <category term="ingress-nginx" scheme="h22f.com/tags/ingress-nginx/"/>
+    
+      <category term="nginx-vts-module" scheme="h22f.com/tags/nginx-vts-module/"/>
+    
+      <category term="nginx" scheme="h22f.com/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>部署高可用kubernetes集群v1.9.2</title>
+    <link href="h22f.com/2018/04/18/%E9%83%A8%E7%BD%B2%E9%AB%98%E5%8F%AF%E7%94%A8kubernetes%E9%9B%86%E7%BE%A4v1-9-2/"/>
+    <id>h22f.com/2018/04/18/部署高可用kubernetes集群v1-9-2/</id>
+    <published>2018-04-18T05:24:42.000Z</published>
+    <updated>2018-04-18T09:01:41.554Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;1-kubernetes-高可用架构&quot;&gt;&lt;a href=&quot;#1-kubernetes-高可用架构&quot; class=&quot;headerlink&quot; title=&quot;1.kubernetes 高可用架构&quot;&gt;&lt;/a&gt;1.kubernetes 高可用架构&lt;/h1&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+      <category term="kubernetes" scheme="h22f.com/categories/kubernetes/"/>
+    
+    
+      <category term="kubernetes" scheme="h22f.com/tags/kubernetes/"/>
+    
+      <category term="k8s" scheme="h22f.com/tags/k8s/"/>
+    
+      <category term="docker" scheme="h22f.com/tags/docker/"/>
+    
+  </entry>
+  
+</feed>
