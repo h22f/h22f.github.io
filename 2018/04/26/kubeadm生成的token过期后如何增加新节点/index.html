@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?a9dde1e1169eef6f6f2869c30501b308"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>kubeadm生成的token过期后如何增加新节点 | H22F&#39;s Blog | 种一棵树最好的时间是十年前，其次是现在。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="kubernetes,k8s,kubeadm">
+    <meta name="description" content="在上一篇部署高可用kubernetes集群v1-9-2中，我们使用kubeadm init生成加入集群的kubeadm join的命令，使其node节点可以加入到集群中。 后续我们需要增加新的node节点到集群中时，发现之前生成的join命令已经无法使用。 123456789101112#  kubeadm join --token 259759.b4a27a3c8bc80545 10.20.1">
+<meta name="keywords" content="kubernetes,k8s,kubeadm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubeadm生成的token过期后如何增加新节点">
+<meta property="og:url" content="h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/index.html">
+<meta property="og:site_name" content="H22F&#39;s Blog">
+<meta property="og:description" content="在上一篇部署高可用kubernetes集群v1-9-2中，我们使用kubeadm init生成加入集群的kubeadm join的命令，使其node节点可以加入到集群中。 后续我们需要增加新的node节点到集群中时，发现之前生成的join命令已经无法使用。 123456789101112#  kubeadm join --token 259759.b4a27a3c8bc80545 10.20.1">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-26T05:57:13.063Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kubeadm生成的token过期后如何增加新节点">
+<meta name="twitter:description" content="在上一篇部署高可用kubernetes集群v1-9-2中，我们使用kubeadm init生成加入集群的kubeadm join的命令，使其node节点可以加入到集群中。 后续我们需要增加新的node节点到集群中时，发现之前生成的join命令已经无法使用。 123456789101112#  kubeadm join --token 259759.b4a27a3c8bc80545 10.20.1">
+    
+        <link rel="alternate" type="application/atom+xml" title="H22F&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">H22F</h5>
+          <a href="mailto:76160526@qq.com" title="76160526@qq.com" class="mail">76160526@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/h22f" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">kubeadm生成的token过期后如何增加新节点</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">kubeadm生成的token过期后如何增加新节点</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-26T05:34:26.000Z" itemprop="datePublished" class="page-time">
+  2018-04-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/kubernetes/">kubernetes</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-kubeadm生成的token过期后如何增加新节点"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">kubeadm生成的token过期后如何增加新节点</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-26 13:34:26" datetime="2018-04-26T05:34:26.000Z"  itemprop="datePublished">2018-04-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/kubernetes/">kubernetes</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在上一篇<a href="/2018/04/18/%E9%83%A8%E7%BD%B2%E9%AB%98%E5%8F%AF%E7%94%A8kubernetes%E9%9B%86%E7%BE%A4v1-9-2/">部署高可用kubernetes集群v1-9-2</a>中，我们使用kubeadm init生成加入集群的kubeadm join的命令，使其node节点可以加入到集群中。</p>
+<p>后续我们需要增加新的node节点到集群中时，发现之前生成的join命令已经无法使用。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  kubeadm join --token 259759.b4a27a3c8bc80545 10.20.143.13:6443 --discovery-token-ca-cert-hash sha256:7ffbe75b80f32aa7c7663ffbb69326ac807f89ff22ae4d96cd8c1d8e30a70d20</span></span><br><span class="line">[preflight] Running pre-flight checks.</span><br><span class="line">        [WARNING SystemVerification]: docker <span class="built_in">version</span> <span class="keyword">is</span> <span class="keyword">greater than</span> <span class="keyword">the</span> most recently validated <span class="built_in">version</span>. Docker <span class="built_in">version</span>: <span class="number">17.12</span><span class="number">.0</span>-ce. Max validated <span class="built_in">version</span>: <span class="number">17.03</span></span><br><span class="line">        [WARNING Hostname]: hostname <span class="string">"k8s.lb01"</span> could <span class="keyword">not</span> be reached</span><br><span class="line">        [WARNING Hostname]: hostname <span class="string">"k8s.lb01"</span> lookup k8s.lb01 <span class="keyword">on</span> <span class="number">114.114</span><span class="number">.114</span><span class="number">.114</span>:<span class="number">53</span>: no such host</span><br><span class="line">        [WARNING FileExisting-socat]: socat <span class="keyword">not</span> found <span class="keyword">in</span> system path</span><br><span class="line">        [WARNING FileExisting-crictl]: crictl <span class="keyword">not</span> found <span class="keyword">in</span> system path</span><br><span class="line">[preflight] Starting <span class="keyword">the</span> kubelet service</span><br><span class="line">[discovery] Trying <span class="keyword">to</span> connect <span class="keyword">to</span> API Server <span class="string">"10.20.143.13:6443"</span></span><br><span class="line">[discovery] Created cluster-info discovery client, requesting info <span class="keyword">from</span> <span class="string">"https://10.20.143.13:6443"</span></span><br><span class="line">[discovery] Failed <span class="keyword">to</span> connect <span class="keyword">to</span> API Server <span class="string">"10.20.143.13:6443"</span>: there <span class="keyword">is</span> no JWS signed token <span class="keyword">in</span> <span class="keyword">the</span> cluster-info ConfigMap. This token <span class="built_in">id</span> <span class="string">"259759"</span> <span class="keyword">is</span> invalid <span class="keyword">for</span> this cluster, can't connect</span><br><span class="line">[discovery] Trying <span class="keyword">to</span> connect <span class="keyword">to</span> API Server <span class="string">"10.20.143.13:6443"</span></span><br></pre></td></tr></table></figure>
+<p>在token list中查不到对应的token<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># kubeadm  <span class="keyword">token</span> <span class="keyword">list</span></span><br><span class="line"><span class="keyword">TOKEN</span>     TTL       EXPIRES   USAGES    DESCRIPTION   EXTRA GROUPS</span><br></pre></td></tr></table></figure></p>
+<p>原因为k8s创建的token的有效期为24小时，当过期之后，该token会被删除掉，无法再继续使用。解决方法如下：</p>
+<blockquote>
+<p>重新生成token:<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># kubeadm token create --<span class="keyword">help</span></span><br><span class="line">...</span><br><span class="line">Usage:</span><br><span class="line">  kubeadm token create [token] [flags]</span><br><span class="line">...</span><br><span class="line">      --<span class="keyword">print</span>-<span class="keyword">join</span>-<span class="keyword">command</span>   Instead of printing <span class="keyword">only</span> the token, <span class="keyword">print</span> the full <span class="string">'kubeadm join'</span> flag needed <span class="keyword">to</span> <span class="keyword">join</span> the cluster using the token.</span><br><span class="line">      --ttl duration         The duration before the token <span class="keyword">is</span> automatically deleted (<span class="keyword">e</span>.g. <span class="number">1</span>s, <span class="number">2</span><span class="keyword">m</span>, <span class="number">3</span>h). If <span class="keyword">set</span> <span class="keyword">to</span> <span class="string">'0'</span>, the token will never expire. (default <span class="number">24</span>h0m0s)</span><br><span class="line"># kubeadm token create --<span class="keyword">print</span>-<span class="keyword">join</span>-<span class="keyword">command</span></span><br><span class="line">kubeadm <span class="keyword">join</span> --token <span class="number">03186</span><span class="keyword">c</span>.<span class="number">7</span>f260d1f9d6839dd <span class="number">10.20</span>.<span class="number">143.13</span>:<span class="number">6443</span> --discovery-token-<span class="keyword">ca</span>-cert-hash <span class="built_in">sha256</span>:<span class="number">7</span>ffbe75b80f32aa7c7663ffbb69326ac807f89ff22ae4d96cd8c1d8e30a70d20</span><br><span class="line"># kubeadm  token <span class="keyword">list</span></span><br><span class="line">TOKEN                     TTL       EXPIRES                     USAGES                   DESCRIPTION   EXTRA GROUPS</span><br><span class="line"><span class="number">03186</span><span class="keyword">c</span>.<span class="number">7</span>f260d1f9d6839dd   <span class="number">23</span>h       <span class="number">2018</span>-<span class="number">04</span>-<span class="number">27</span>T13:<span class="number">47</span>:<span class="number">59</span>+<span class="number">08</span>:<span class="number">00</span>   authentication,signing   <span class="symbol">&lt;none&gt;</span>        <span class="built_in">system</span>:bootstrapper<span class="variable">s:kubeadm</span>:default-node-token</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>可以使用–print-join-command 参数打印出join命令，在新的node节点使用即可，<br>也可以使用–ttl 参数设置token超时时间，默认时间为24h0m0s。</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-04-26T05:57:13.063Z" itemprop="dateUpdated">2018-04-26 13:57:13</time>
+</span><br>
+
+
+        
+        转载请注明来源：<a href="/2018/04/26/kubeadm生成的token过期后如何增加新节点/" target="_blank" rel="external">h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="h22f.com">
+            <img src="/img/avatar.jpg" alt="H22F">
+            H22F
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/k8s/">k8s</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubeadm/">kubeadm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubernetes/">kubernetes</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/&title=《kubeadm生成的token过期后如何增加新节点》 — H22F's Blog&pic=h22f.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/&title=《kubeadm生成的token过期后如何增加新节点》 — H22F's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《kubeadm生成的token过期后如何增加新节点》 — H22F's Blog&url=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/&via=h22f.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/18/kubernetes-ingress-nginx开启-nginx-vts-module/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">kubernetes ingress-nginx开启 nginx-vts-module</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2161412"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/WeChatQR.jpeg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/WeChatQR.jpeg" data-alipay="/img/AliPayQR.jpeg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>H22F &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/&title=《kubeadm生成的token过期后如何增加新节点》 — H22F's Blog&pic=h22f.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/&title=《kubeadm生成的token过期后如何增加新节点》 — H22F's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《kubeadm生成的token过期后如何增加新节点》 — H22F's Blog&url=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/&via=h22f.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

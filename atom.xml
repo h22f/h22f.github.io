@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="h22f.com/"/>
-  <updated>2018-04-18T08:28:24.266Z</updated>
+  <updated>2018-04-26T05:57:13.063Z</updated>
   <id>h22f.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kubeadm生成的token过期后如何增加新节点</title>
+    <link href="h22f.com/2018/04/26/kubeadm%E7%94%9F%E6%88%90%E7%9A%84token%E8%BF%87%E6%9C%9F%E5%90%8E%E5%A6%82%E4%BD%95%E5%A2%9E%E5%8A%A0%E6%96%B0%E8%8A%82%E7%82%B9/"/>
+    <id>h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/</id>
+    <published>2018-04-26T05:34:26.000Z</published>
+    <updated>2018-04-26T05:57:13.063Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在上一篇&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="kubernetes" scheme="h22f.com/categories/kubernetes/"/>
+    
+    
+      <category term="kubernetes" scheme="h22f.com/tags/kubernetes/"/>
+    
+      <category term="k8s" scheme="h22f.com/tags/k8s/"/>
+    
+      <category term="kubeadm" scheme="h22f.com/tags/kubeadm/"/>
+    
+  </entry>
   
   <entry>
     <title>kubernetes ingress-nginx开启 nginx-vts-module</title>
