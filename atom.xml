@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="h22f.com/"/>
-  <updated>2018-04-26T05:57:13.063Z</updated>
+  <updated>2018-04-27T01:15:02.517Z</updated>
   <id>h22f.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MAC上使用kubectl管理k8s集群</title>
+    <link href="h22f.com/2018/04/26/MAC%E4%B8%8A%E4%BD%BF%E7%94%A8kubectl%E7%AE%A1%E7%90%86k8s%E9%9B%86%E7%BE%A4/"/>
+    <id>h22f.com/2018/04/26/MAC上使用kubectl管理k8s集群/</id>
+    <published>2018-04-26T10:59:16.000Z</published>
+    <updated>2018-04-27T01:15:02.517Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;如何在MAC-OSX安装并使用kubectl管理k8s集群&quot;&gt;&lt;a href=&quot;#如何在MAC-OSX安装并使用kubectl管理k8s集群&quot; class=&quot;headerlink&quot; title=&quot;如何在MAC
+        
+      
+    
+    </summary>
+    
+      <category term="kubernetes" scheme="h22f.com/categories/kubernetes/"/>
+    
+    
+      <category term="MAC" scheme="h22f.com/tags/MAC/"/>
+    
+      <category term="kubernetes" scheme="h22f.com/tags/kubernetes/"/>
+    
+      <category term="kubectl" scheme="h22f.com/tags/kubectl/"/>
+    
+  </entry>
   
   <entry>
     <title>kubeadm生成的token过期后如何增加新节点</title>
