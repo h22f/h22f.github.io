@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="h22f.com/"/>
-  <updated>2018-04-27T01:15:02.517Z</updated>
+  <updated>2019-01-16T08:02:29.073Z</updated>
   <id>h22f.com/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>基于PXE自动配置RAID方法</title>
+    <link href="h22f.com/2019/01/16/%E5%9F%BA%E4%BA%8EPXE%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AERAID%E6%96%B9%E6%B3%95/"/>
+    <id>h22f.com/2019/01/16/基于PXE自动配置RAID方法/</id>
+    <published>2019-01-16T07:52:44.000Z</published>
+    <updated>2019-01-16T08:02:29.073Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h4&gt;&lt;h5 id=&quot;PXE是什么&quot;&gt;&lt;a href=&quot;#PXE是什么&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="h22f.com/categories/linux/"/>
+    
+    
+      <category term="pxe" scheme="h22f.com/tags/pxe/"/>
+    
+      <category term="linux" scheme="h22f.com/tags/linux/"/>
+    
+      <category term="raid" scheme="h22f.com/tags/raid/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MAC上使用kubectl管理k8s集群</title>
     <link href="h22f.com/2018/04/26/MAC%E4%B8%8A%E4%BD%BF%E7%94%A8kubectl%E7%AE%A1%E7%90%86k8s%E9%9B%86%E7%BE%A4/"/>
     <id>h22f.com/2018/04/26/MAC上使用kubectl管理k8s集群/</id>
     <published>2018-04-26T10:59:16.000Z</published>
-    <updated>2018-04-27T01:15:02.517Z</updated>
+    <updated>2018-04-27T01:15:02.000Z</updated>
     
     <summary type="html">
     
@@ -51,7 +81,7 @@
     <link href="h22f.com/2018/04/26/kubeadm%E7%94%9F%E6%88%90%E7%9A%84token%E8%BF%87%E6%9C%9F%E5%90%8E%E5%A6%82%E4%BD%95%E5%A2%9E%E5%8A%A0%E6%96%B0%E8%8A%82%E7%82%B9/"/>
     <id>h22f.com/2018/04/26/kubeadm生成的token过期后如何增加新节点/</id>
     <published>2018-04-26T05:34:26.000Z</published>
-    <updated>2018-04-26T05:57:13.063Z</updated>
+    <updated>2018-04-26T05:57:13.000Z</updated>
     
     <summary type="html">
     
@@ -81,7 +111,7 @@
     <link href="h22f.com/2018/04/18/kubernetes-ingress-nginx%E5%BC%80%E5%90%AF-nginx-vts-module/"/>
     <id>h22f.com/2018/04/18/kubernetes-ingress-nginx开启-nginx-vts-module/</id>
     <published>2018-04-18T07:46:42.000Z</published>
-    <updated>2018-04-18T08:28:24.266Z</updated>
+    <updated>2018-04-18T08:28:24.000Z</updated>
     
     <summary type="html">
     
@@ -115,7 +145,7 @@
     <link href="h22f.com/2018/04/18/%E9%83%A8%E7%BD%B2%E9%AB%98%E5%8F%AF%E7%94%A8kubernetes%E9%9B%86%E7%BE%A4v1-9-2/"/>
     <id>h22f.com/2018/04/18/部署高可用kubernetes集群v1-9-2/</id>
     <published>2018-04-18T05:24:42.000Z</published>
-    <updated>2018-04-18T09:01:41.554Z</updated>
+    <updated>2018-04-18T09:01:41.000Z</updated>
     
     <summary type="html">
     
